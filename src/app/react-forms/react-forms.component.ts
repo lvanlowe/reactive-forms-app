@@ -71,9 +71,9 @@ export class ReactFormsComponent implements OnInit {
       })
     });
 
-    this.contactForm.get("firstName")?.statusChanges.subscribe(newStatus=> {
-      console.log('firstName status changed')
-      console.log(newStatus)
+    this.contactForm.get("firstName")?.valueChanges.subscribe(selectedValue=> {
+      console.log('firstName changed')
+      console.log(selectedValue)
       console.log(this.contactForm.get("firstName")?.status)
       console.log(this.contactForm.status)
 
@@ -83,14 +83,14 @@ export class ReactFormsComponent implements OnInit {
 
     })
 
-    this.contactForm.get("address")?.statusChanges.subscribe(newStatus=> {
-      console.log('address status changed')
-      console.log(newStatus)
+    this.contactForm.get("address")?.statusChanges.subscribe(selectedValue=> {
+      console.log('address changed')
+      console.log(selectedValue)
     })
 
-    this.contactForm.statusChanges.subscribe(newStatus=> {
-      console.log('form status changed')
-      console.log(newStatus)
+    this.contactForm.statusChanges.subscribe(selectedValue=> {
+      console.log('form value changed')
+      console.log(selectedValue)
     })
   }
 
