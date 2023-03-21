@@ -58,18 +58,40 @@ export class ReactFormsComponent implements OnInit {
   ngOnInit(): void {
 
     this.contactForm = this.formBuilder.group({
-      firstName: ['Bruce', [Validators.required, Validators.minLength(10)]],
-      lastName: ['Banner', [Validators.required, Validators.pattern("^[a-zA-Z]+$")]],
-      email: ['', [Validators.required, Validators.email]],
-      gender: ['', [Validators.required]],
-      isMarried: ['', [Validators.required]],
-      country: ['', [Validators.required]],
+      firstName: ['', [Validators.required]],
+      lastName: [''],
+      email: ['', [Validators.email]],
+      gender: [''],
+      isMarried: [''],
+      country: [''],
       address: this.formBuilder.group({
-        city: ['', [Validators.required]],
-        street: ['', [Validators.required]],
-        zipCode: ['', [Validators.required]],
+        city: [''],
+        street: [''],
+        zipCode: [''],
       })
     });
+
+    this.contactForm.get("firstName")?.statusChanges.subscribe(newStatus=> {
+      console.log('firstName status changed')
+      console.log(newStatus)
+      console.log(this.contactForm.get("firstName")?.status)
+      console.log(this.contactForm.status)
+
+      setTimeout(() => {
+        console.log(this.contactForm.status)
+      })
+
+    })
+
+    this.contactForm.get("address")?.statusChanges.subscribe(newStatus=> {
+      console.log('address status changed')
+      console.log(newStatus)
+    })
+
+    this.contactForm.statusChanges.subscribe(newStatus=> {
+      console.log('form status changed')
+      console.log(newStatus)
+    })
   }
 
 
@@ -102,7 +124,7 @@ export class ReactFormsComponent implements OnInit {
       lastName: "Parker",
       email: "peter@gmail.com",
       gender: "male",
-      // isMarried: true,
+      isMarried: true,
       country: "1",
       address: {
         city: "Bangalore",
@@ -156,6 +178,23 @@ export class ReactFormsComponent implements OnInit {
 
   }
 
+  setFirstName() {
+    this.contactForm.get("firstName")?.setValue("Tony")
+  }
+
+  withoutOnlySelf() {
+    this.contactForm.get("firstName")?.setValue("");
+  }
+  withOnlySelf() {
+    this.contactForm.get("firstName")?.setValue("", { onlySelf: true });
+  }
+
+  withEmitEvent() {
+    this.contactForm.get("firstName")?.setValue("Hal");
+  }
+  withoutEmitEvent() {
+    this.contactForm.get("firstName")?.setValue("", { emitEvent: false });
+  }
   reset() {
     this.contactForm.reset();
   }

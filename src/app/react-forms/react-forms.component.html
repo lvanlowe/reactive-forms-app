@@ -117,20 +117,28 @@
     </div>
 
     <button>Submit</button>
-    <div>
+    <!-- <div>
       <button type="button" (click)="setDefault()">Default</button>
-    </div>
+    </div> -->
     <div>
       <button type="button" (click)="setValue()">SetValue</button>
       <button type="button" (click)="setAddress()">Address</button>
-      <button type="button" (click)="setCountry()">Country</button>
+      <!-- <button type="button" (click)="setCountry()">Country</button> -->
+      <button type="button" (click)="setFirstName()">First Name</button>
     </div>
-    <div>
+    <!-- <div>
       <button type="button" (click)="patchName()">Name</button>
       <button type="button" (click)="patchAddress()">Address</button>
       <button type="button" (click)="reset()">Reset</button>
+    </div> -->
+    <div>
+      <button type="button" (click)="withoutOnlySelf()">Without Only Self</button>
+      <button type="button" (click)="withOnlySelf()">With Only Self</button>
     </div>
-
+    <div>
+      <button type="button" (click)="withoutEmitEvent()">Without EmitEvent</button>
+      <button type="button" (click)="withEmitEvent()">With EmitEvent</button>
+    </div>
   </form>
 
   </div>
@@ -138,6 +146,7 @@
   <div style="float: right; width:50%;">
 
     <h3>Form Status</h3>
+    <b>status : </b>{{contactForm.status}}
     <b>valid : </b>{{contactForm.valid}}
     <b>invalid : </b>{{contactForm.invalid}}
     <b>touched : </b>{{contactForm.touched}}
