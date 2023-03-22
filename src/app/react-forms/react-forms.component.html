@@ -126,18 +126,31 @@
       <!-- <button type="button" (click)="setCountry()">Country</button> -->
       <button type="button" (click)="setFirstName()">First Name</button>
     </div>
-    <!-- <div>
+    <div>
       <button type="button" (click)="patchName()">Name</button>
       <button type="button" (click)="patchAddress()">Address</button>
       <button type="button" (click)="reset()">Reset</button>
-    </div> -->
-    <div>
+    </div>
+    <!-- <div>
       <button type="button" (click)="withoutOnlySelf()">Without Only Self</button>
       <button type="button" (click)="withOnlySelf()">With Only Self</button>
     </div>
     <div>
       <button type="button" (click)="withoutEmitEvent()">Without EmitEvent</button>
       <button type="button" (click)="withEmitEvent()">With EmitEvent</button>
+    </div> -->
+    <div>
+      <button type="button" (click)="disabled()">Disabled</button>
+      <button type="button" (click)="enabled()">Enabled</button>
+    </div>
+    <div>
+      <button type="button" (click)="markAsTouched()">Mark As Touched</button>
+      <button type="button" (click)="markAllAsTouched()">Mark All As Touched</button>
+      <button type="button" (click)="markAsUntouched()">Mark As Untouched</button>
+    </div>
+    <div>
+      <button type="button" (click)="markAsDirty()">Mark As Dirty</button>
+      <button type="button" (click)="markAsPristine()">Mark As Pristine</button>
     </div>
   </form>
 
@@ -155,6 +168,22 @@
     <b>dirty : </b>{{contactForm.dirty}}
     <b>disabled : </b>{{contactForm.disabled}}
     <b>enabled : </b>{{contactForm.enabled}}
+
+    <h3>First Name Status</h3>
+    <b>status : </b>{{firstName?.status}}
+    <b>valid : </b>{{firstName?.valid}}
+    <b>invalid : </b>{{firstName?.invalid}}
+    <b>touched : </b>{{firstName?.touched}}
+    <b>untouched : </b>{{firstName?.untouched}}
+    <b>pristine : </b>{{firstName?.pristine}}
+    <b>dirty : </b>{{firstName?.dirty}}
+    <b>disabled : </b>{{firstName?.disabled}}
+    <b>enabled : </b>{{firstName?.enabled}}
+
+    <h3>Address Touched</h3>
+    <b>city : </b>{{city?.touched}}
+    <b>street : </b>{{street?.touched}}
+    <b>zipCode : </b>{{zipCode?.touched}}
 
     <h3>Form Value</h3>
     {{contactForm.value |json}}

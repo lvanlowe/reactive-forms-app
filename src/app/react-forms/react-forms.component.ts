@@ -182,11 +182,32 @@ export class ReactFormsComponent implements OnInit {
     this.contactForm.get("firstName")?.setValue("Tony")
   }
 
-  withoutOnlySelf() {
-    this.contactForm.get("firstName")?.setValue("");
+  disabled() {
+    this.contactForm.get("firstName")?.disable()
   }
-  withOnlySelf() {
-    this.contactForm.get("firstName")?.setValue("", { onlySelf: true });
+
+  enabled() {
+    this.contactForm.get("firstName")?.enable()
+  }
+
+  markAsTouched() {
+    this.contactForm.get("firstName")?.markAsTouched()
+  }
+
+  markAllAsTouched() {
+    this.contactForm.get("address")?.markAllAsTouched()
+  }
+
+  markAsUntouched() {
+    this.contactForm.get("firstName")?.markAsUntouched()
+  }
+
+  markAsDirty() {
+    this.contactForm.get("firstName")?.markAsDirty()
+  }
+
+  markAsPristine() {
+    this.contactForm.get("firstName")?.markAsPristine()
   }
 
   withEmitEvent() {
