@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-react-forms',
@@ -10,6 +10,7 @@ export class ReactFormsComponent implements OnInit {
 
   title = 'mdf';
   contactForm!: FormGroup;
+  middleName!: FormControl
 
   countryList: country[] = [
     new country("1", "India"),
@@ -58,7 +59,7 @@ export class ReactFormsComponent implements OnInit {
   ngOnInit(): void {
 
     this.contactForm = this.formBuilder.group({
-      firstName: ['', [Validators.required]],
+      firstName: [''],
       lastName: [''],
       email: ['', [Validators.email]],
       gender: [''],
@@ -68,14 +69,18 @@ export class ReactFormsComponent implements OnInit {
         city: [''],
         street: [''],
         zipCode: [''],
-      })
+      },
+      {
+        validators: this.addressValidator
+      }
+      )
     });
 
     this.contactForm.get("firstName")?.valueChanges.subscribe(selectedValue=> {
       console.log('firstName changed')
       console.log(selectedValue)
       console.log(this.contactForm.get("firstName")?.status)
-      console.log(this.contactForm.status)
+      console.log(this.contactForm)
 
       setTimeout(() => {
         console.log(this.contactForm.status)
@@ -91,6 +96,7 @@ export class ReactFormsComponent implements OnInit {
     this.contactForm.statusChanges.subscribe(selectedValue=> {
       console.log('form value changed')
       console.log(selectedValue)
+      console.log(this.contactForm)
     })
   }
 
@@ -179,15 +185,15 @@ export class ReactFormsComponent implements OnInit {
   }
 
   setFirstName() {
-    this.contactForm.get("firstName")?.setValue("Tony")
+    this.contactForm.get("middleName")?.setValue("Tony")
   }
 
   disabled() {
-    this.contactForm.get("firstName")?.disable()
+    this.contactForm.disable()
   }
 
   enabled() {
-    this.contactForm.get("firstName")?.enable()
+    this.contactForm.enable()
   }
 
   markAsTouched() {
@@ -203,11 +209,11 @@ export class ReactFormsComponent implements OnInit {
   }
 
   markAsDirty() {
-    this.contactForm.get("firstName")?.markAsDirty()
+    this.contactForm.markAsDirty()
   }
 
   markAsPristine() {
-    this.contactForm.get("firstName")?.markAsPristine()
+    this.contactForm.markAsPristine()
   }
 
   withEmitEvent() {
@@ -216,10 +222,52 @@ export class ReactFormsComponent implements OnInit {
   withoutEmitEvent() {
     this.contactForm.get("firstName")?.setValue("", { emitEvent: false });
   }
+
+  addControl() {
+    this.middleName = new FormControl('', [Validators.required]);
+    this.contactForm.addControl("middleName",this.middleName);
+  }
+
+  registerControl() {
+    this.middleName = new FormControl('', [Validators.required]);
+    this.contactForm.addControl("middleName",this.middleName);
+  }
+
+  removeControl() {
+    this.contactForm.removeControl("middleName");
+  }
+
+  containsControl() {
+    console.log(this.contactForm.contains("middleName"));
+  }
+
+  setValidator() {
+    this.contactForm.get("firstName")?.setValidators([Validators.required]);
+    this.contactForm.get("firstName")?.updateValueAndValidity();
+  }
+
+  clearValidation() {
+    this.contactForm.get("firstName")?.clearValidators();
+    this.contactForm.get("firstName")?.updateValueAndValidity();
+ }
+
+  setErrors() {
+    this.contactForm.setErrors( {customError:'custom error'});
+  }
+
   reset() {
     this.contactForm.reset();
   }
 
+  addressValidator(control: AbstractControl): ValidationErrors | null {
+    const city = control.get('city')?.value;
+    const street = control.get('street')?.value;
+    console.log(control);
+    if (city=="" && street=="") {
+      return { missing_address:true };
+    }
+    return null ;
+  }
 }
 
 export class country {
@@ -231,3 +279,4 @@ export class country {
     this.name = name;
   }
 }
+

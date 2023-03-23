@@ -88,8 +88,8 @@
         <input type="text" class="form-control" name="city" formControlName="city">
       </div>
       <div *ngIf="!city?.valid && (city?.dirty ||city?.touched)">
-        <div [hidden]="!city?.hasError('required')">
-          city is required
+        <div [hidden]="!city?.hasError('missing_address')">
+          address is required
         </div>
       </div>
 
@@ -99,8 +99,8 @@
         <input type="text" class="form-control" name="street" formControlName="street">
       </div>
       <div *ngIf="!street?.valid && (street?.dirty ||street?.touched)">
-        <div [hidden]="!street?.hasError('required')">
-          street is required
+        <div [hidden]="!street?.hasError('missing_address')">
+          address is required
         </div>
       </div>
 
@@ -117,20 +117,20 @@
     </div>
 
     <button>Submit</button>
-    <!-- <div>
-      <button type="button" (click)="setDefault()">Default</button>
-    </div> -->
     <div>
+      <button type="button" (click)="reset()">Reset</button>
+    </div>
+    <!-- <div>
       <button type="button" (click)="setValue()">SetValue</button>
       <button type="button" (click)="setAddress()">Address</button>
-      <!-- <button type="button" (click)="setCountry()">Country</button> -->
+      <button type="button" (click)="setCountry()">Country</button>
       <button type="button" (click)="setFirstName()">First Name</button>
     </div>
     <div>
       <button type="button" (click)="patchName()">Name</button>
       <button type="button" (click)="patchAddress()">Address</button>
       <button type="button" (click)="reset()">Reset</button>
-    </div>
+    </div> -->
     <!-- <div>
       <button type="button" (click)="withoutOnlySelf()">Without Only Self</button>
       <button type="button" (click)="withOnlySelf()">With Only Self</button>
@@ -140,18 +140,33 @@
       <button type="button" (click)="withEmitEvent()">With EmitEvent</button>
     </div> -->
     <div>
+      <button type="button" (click)="setFirstName()">Middle Name</button>
       <button type="button" (click)="disabled()">Disabled</button>
       <button type="button" (click)="enabled()">Enabled</button>
     </div>
-    <div>
+    <!-- <div>
       <button type="button" (click)="markAsTouched()">Mark As Touched</button>
       <button type="button" (click)="markAllAsTouched()">Mark All As Touched</button>
       <button type="button" (click)="markAsUntouched()">Mark As Untouched</button>
-    </div>
+    </div> -->
     <div>
       <button type="button" (click)="markAsDirty()">Mark As Dirty</button>
       <button type="button" (click)="markAsPristine()">Mark As Pristine</button>
     </div>
+    <div>
+      <button type="button" (click)="addControl()">Add Control</button>
+      <button type="button" (click)="registerControl()">Register Control</button>
+    </div>
+    <div>
+      <button type="button" (click)="removeControl()">Remove Control</button>
+      <button type="button" (click)="containsControl()">Contains Control</button>
+    </div>
+    <div>
+      <button type="button" (click)="setValidator()">Set Validator</button>
+      <button type="button" (click)="clearValidation()">Clear Validation</button>
+      <button type="button" (click)="setErrors()">Set Errors</button>
+    </div>
+
   </form>
 
   </div>
