@@ -73,24 +73,20 @@ export class ReactFormsComponent implements OnInit {
 
     this.contactForm.get("firstName")?.statusChanges.subscribe(newStatus=> {
       console.log('firstName status changed')
-      console.log(newStatus)
-      console.log(this.contactForm.get("firstName")?.status)
-      console.log(this.contactForm.status)
-
-      setTimeout(() => {
-        console.log(this.contactForm.status)
-      })
+      console.log('first name new status: ' + newStatus)
+      console.log('first name status: ' + this.contactForm.get("firstName")?.status)
+      console.log('form group status: ' + this.contactForm.status)
 
     })
 
     this.contactForm.get("address")?.statusChanges.subscribe(newStatus=> {
-      console.log('address status changed')
+      console.log('address status: ' + 'address status changed')
       console.log(newStatus)
     })
 
     this.contactForm.statusChanges.subscribe(newStatus=> {
       console.log('form status changed')
-      console.log(newStatus)
+      console.log('form group new status: ' + newStatus)
     })
   }
 
