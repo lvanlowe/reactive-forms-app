@@ -73,19 +73,15 @@ export class ReactFormsComponent implements OnInit {
 
     this.contactForm.get("firstName")?.valueChanges.subscribe(selectedValue=> {
       console.log('firstName value changed')
-      console.log(selectedValue)
-      console.log(this.contactForm.get("firstName")?.value)
+      console.log('first name new value: ' + selectedValue)
+      console.log('first name value: ' + this.contactForm.get("firstName")?.value)
       console.log(this.contactForm.value)
-
-      setTimeout(() => {
-        console.log(this.contactForm.value)
-      })
 
     })
 
     this.contactForm.get("address")?.valueChanges.subscribe(selectedValue=> {
       console.log('address value changed')
-      console.log(selectedValue)
+      console.log( selectedValue)
     })
 
     this.contactForm.valueChanges.subscribe(selectedValue=> {
