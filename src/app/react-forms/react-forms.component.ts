@@ -179,14 +179,14 @@ export class ReactFormsComponent implements OnInit {
   }
 
   withoutOnlySelf() {
-    this.contactForm.get("firstName")?.setValue("");
+    this.contactForm.get("firstName")?.setValue("", { onlySelf: false }); //default
   }
   withOnlySelf() {
     this.contactForm.get("firstName")?.setValue("", { onlySelf: true });
   }
 
   withEmitEvent() {
-    this.contactForm.get("firstName")?.setValue("Hal");
+    this.contactForm.get("firstName")?.setValue("Hal", { emitEvent: true }); //default
   }
   withoutEmitEvent() {
     this.contactForm.get("firstName")?.setValue("", { emitEvent: false });
